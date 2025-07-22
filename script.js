@@ -1,17 +1,12 @@
-const options = ["rock", "paper", "scissors"]
+const options = ["rock", "paper", "scissors"];
 
-function getHumanChoice () {
-    sign = prompt("Select your hand").toLowerCase();
-    let isInArray = false;
-    // Check if the input is one of the options
-    // If it is, return the input; if not, alert the user and ask again
-    isInArray = options.includes(sign)
-    if (isInArray === true) {
-        return sign
-    } else
-    {
-        alert("Please select rock, paper, or scissors")
-        return getHumanChoice()
+function getHumanChoice() {
+    let sign = prompt("Select your hand").toLowerCase();
+    if (options.includes(sign)) {
+        return sign;
+    } else {
+        alert("Please select rock, paper, or scissors");
+        return getHumanChoice();
     }
 }
 
@@ -20,25 +15,40 @@ function getRandomInt(max) {
 }
 
 function getComputerChoice() {
-    return options[getRandomInt(3)]
+    return options[getRandomInt(3)];
 }
+
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     console.log(`You chose: ${humanChoice}`);
     console.log(`Computer chose: ${computerChoice}`);
+
     if (humanChoice === computerChoice) {
-        return "It's a tie!";
+        return `It's a tie! Current score: ${humanScore} to ${computerScore}`;
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        return "You win! " + humanChoice + " beats " + computerChoice;
+        humanScore++;
+        return `You win! ${humanChoice} beats ${computerChoice}. Current score: ${humanScore} to ${computerScore}`;
     } else {
-        return "You lose! " + computerChoice + " beats " + humanChoice;
+        computerScore++;
+        return `You lose! ${computerChoice} beats ${humanChoice}. Current score: ${humanScore} to ${computerScore}`;
     }
 }
 
-let humanScore, computerScore = 0;
+// Loop until someone gets 2 points
+while (humanScore < 2 && computerScore < 2) {
+    const humanChoice = getHumanChoice();
+    const computerChoice = getComputerChoice();
+    console.log(playRound(humanChoice, computerChoice));
+}
 
-console.log(playRound(getHumanChoice(), getComputerChoice()))
+if (humanScore === 2) {
+    console.log(`You won the match! Final score: ${humanScore} to ${computerScore}`);
+} else {
+    console.log(`You lost the match. Final score: ${humanScore} to ${computerScore}`);
+}
