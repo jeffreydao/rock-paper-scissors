@@ -40,15 +40,16 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-// Loop until someone gets 2 points
-while (humanScore < 2 && computerScore < 2) {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    console.log(playRound(humanChoice, computerChoice));
-}
+// // Loop until someone gets 2 points
+// while (humanScore < 2 && computerScore < 2) {
+//     const humanChoice = getHumanChoice();
+//     const computerChoice = getComputerChoice();
+//     console.log(playRound(humanChoice, computerChoice));
+// }
 
-if (humanScore === 2) {
-    console.log(`You won the match! Final score: ${humanScore} to ${computerScore}`);
-} else {
-    console.log(`You lost the match. Final score: ${humanScore} to ${computerScore}`);
-}
+// if (humanScore === 2) {
+//     console.log(`You won the match! Final score: ${humanScore} to ${computerScore}`);
+// } else {
+//     console.log(`You lost the match. Final score: ${humanScore} to ${computerScore}`);
+// }
+
